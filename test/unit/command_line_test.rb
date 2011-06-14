@@ -6,8 +6,8 @@ class CommandLineTest < ActiveSupport::TestCase
   def test_should_write_to_both_files_when_both_files_specified_and_no_block
     in_total_sandbox do
       CommandLine.execute("echo hello", {:dir => @dir, :stdout => @stdout, :stderr => @stderr})
-      assert_match(/.* echo hello *\n.?hello ?/n, File.read(@stdout))
-      assert_match(/.* echo hello/n, File.read(@stderr))
+      assert_equal(@prompt + " " + CommandLine.escape("echo hello") + "  \nhello \n", File.read(@stdout))
+      assert_match(/.* #{CommandLine.escape("echo hello")}/n, File.read(@stderr))
     end
   end
 
@@ -18,7 +18,7 @@ class CommandLineTest < ActiveSupport::TestCase
       end
       assert_equal("hello", File.read(@stdout).strip)
 #      assert_equal("#{@prompt} echo hello\nhello", File.read(@stdout).strip)
-      assert_equal("#{@prompt} echo hello", File.read(@stderr).strip)
+      assert_equal(@prompt + " " + CommandLine.escape("echo hello"), File.read(@stderr).strip)
     end
   end
 
@@ -28,8 +28,8 @@ class CommandLineTest < ActiveSupport::TestCase
         
         assert_equal("hello", io.read.strip)
       end
-      assert_match(/.* echo hello\s*\[output captured and therefore not logged\]/n, File.read(@stdout).strip)
-      assert_equal("#{@prompt} echo hello", File.read(@stderr).strip)
+      assert_equal(@prompt + " " + CommandLine.escape("echo hello") + "  \n'[output captured and therefore not logged]'", File.read(@stdout).strip)
+      assert_equal(@prompt + " " + CommandLine.escape("echo hello"), File.read(@stderr).strip)
     end
   end
 

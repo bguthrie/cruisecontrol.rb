@@ -178,7 +178,7 @@ class SourceControl::SubversionTest < ActiveSupport::TestCase
       io = StringIO.new
       svn.clean_checkout(Subversion::Revision.new(5), io)
 
-      assert_equal "hello world\n", io.string
+      assert_equal "hello world", io.string.strip
     end
   end
 
