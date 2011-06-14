@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
     elsif File.file?(path)
       @content = File.read(path)
     else
-      render_not_found
+      render :text => "Path #{path} not found", :status => 404
     end
   end
 

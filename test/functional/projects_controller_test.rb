@@ -123,7 +123,7 @@ class ProjectsControllerTest < ActionController::TestCase
 
     test "should render a 404 if the requested project does not exist" do
       Project.expects(:find).with('non_existing_project').returns(nil)
-      post :show, :id => "non_existing_project", :format => 'rss'
+      get :show, :id => "non_existing_project", :format => 'rss'
       assert_response 404
       assert_equal 'Project "non_existing_project" not found', @response.body
     end
