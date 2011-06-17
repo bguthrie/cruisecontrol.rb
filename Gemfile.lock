@@ -55,7 +55,10 @@ GEM
       nokogiri (>= 1.2.1)
     mime-types (1.16)
     mocha (0.9.12)
-    nokogiri (1.4.4.1-x86-mingw32)
+    nokogiri (1.4.5)
+    nokogiri (1.4.5-java)
+      weakling (>= 0.0.3)
+    nokogiri (1.4.5-x86-mingw32)
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -80,6 +83,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    weakling (0.0.4-java)
     xml-simple (1.0.16)
 
 PLATFORMS
@@ -95,7 +99,7 @@ DEPENDENCIES
   jruby-openssl
   mechanize (= 1.0.0)
   mocha (~> 0.9.10)
-  nokogiri (= 1.4.4.1)
+  nokogiri (= 1.4.5)
   rack (~> 1.2.1)
   rack-test
   rails (~> 3.0.7)
