@@ -1,0 +1,75 @@
+id: 2-16.0.r19/0
+type: file
+pred: 2-16.0.r18/63
+count: 3
+text: 17 0 18 6 b9954ca3991dc73aeb299df7246828bd 9cb06359301e0a398417033bbffce42282e8a617 18-i/_2
+props: 16 27 34 0 25e6c2f7558b7484000d4d090dea5b92
+cpath: /project_with_central_config/cruise_config.rb
+copyroot: 0 /
+
+PLAIN
+K 16
+cruise_config.rb
+V 17
+file 2-16.0.r19/0
+END
+ENDREP
+id: 0-16.0.r19/336
+type: dir
+pred: 0-16.0.r18/402
+count: 3
+text: 19 274 49 49 aaaacf78d723ffc66873ef7965180f1f
+cpath: /project_with_central_config
+copyroot: 0 /
+
+PLAIN
+K 15
+failing_project
+V 18
+dir 0-1.0-5.r7/450
+K 3
+foo
+V 20
+dir 0-11.0.r11/83406
+K 15
+passing_project
+V 16
+dir 0-1.0.r7/970
+K 27
+project_with_central_config
+V 18
+dir 0-16.0.r19/336
+K 37
+project_with_cruise_and_default_tasks
+V 18
+dir 0-10.0.r10/568
+K 29
+project_with_custom_rake_task
+V 18
+dir 0-12.0.r13/421
+K 23
+project_with_db_migrate
+V 18
+dir 0-8.0.r15/4197
+K 38
+project_with_db_test_purge_and_migrate
+V 19
+dir 0-14.0.r15/1467
+K 57
+project_with_no_migration_scripts_but_database_yml_exists
+V 19
+dir n-15.0.r15/2843
+END
+ENDREP
+id: 0.0.r19/1030
+type: dir
+pred: 0.0.r18/1096
+count: 19
+text: 19 498 519 519 f1880b0ae6b67dd52bcaafccba6afc48
+cpath: /
+copyroot: 0 /
+
+2-16.0.t18-i modify-file true false /project_with_central_config/cruise_config.rb
+
+
+1030 1164

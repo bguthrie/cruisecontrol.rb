@@ -10,6 +10,8 @@
 #   [1] REPOS-PATH   (the path to this repository)
 #   [2] PATH         (the path in the repository about to be unlocked)
 #   [3] USER         (the user destroying the lock)
+#   [4] TOKEN        (the lock token to be destroyed)
+#   [5] BREAK-UNLOCK (1 if the user is breaking the lock, else 0)
 #
 # The default working directory for the invocation is undefined, so
 # the program should set one explicitly if it cares.
@@ -47,11 +49,12 @@ LOCK_OWNER=`$SVNLOOK lock "$REPOS" "$PATH" | \
             $GREP '^Owner: ' | $SED 's/Owner: //'`
 
 # If we get no result from svnlook, there's no lock, return success:
-if [ "$LOCK_OWNER" == "" ]; then
+if [ "$LOCK_OWNER" = "" ]; then
   exit 0
 fi
+
 # If the person unlocking matches the lock's owner, return success:
-if [ "$LOCK_OWNER" == "$USER" ]; then
+if [ "$LOCK_OWNER" = "$USER" ]; then
   exit 0
 fi
 

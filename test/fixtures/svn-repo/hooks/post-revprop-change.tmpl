@@ -43,8 +43,8 @@
 # Here is an example hook script, for a Unix /bin/sh interpreter.
 # For more examples and pre-written hooks, see those in
 # the Subversion repository at
-# http://svn.collab.net/repos/svn/trunk/tools/hook-scripts/ and
-# http://svn.collab.net/repos/svn/trunk/contrib/hook-scripts/
+# http://svn.apache.org/repos/asf/subversion/trunk/tools/hook-scripts/ and
+# http://svn.apache.org/repos/asf/subversion/trunk/contrib/hook-scripts/
 
 
 REPOS="$1"
@@ -53,4 +53,4 @@ USER="$3"
 PROPNAME="$4"
 ACTION="$5"
 
-propchange-email.pl "$REPOS" "$REV" "$USER" "$PROPNAME" watchers@example.org
+mailer.py propchange2 "$REPOS" "$REV" "$USER" "$PROPNAME" "$ACTION" /path/to/mailer.conf

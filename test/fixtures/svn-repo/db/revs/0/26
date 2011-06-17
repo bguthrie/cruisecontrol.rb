@@ -1,4 +1,4 @@
-id: 3f.0.r26/0
+id: 0-26.0.r26/0
 type: dir
 count: 0
 cpath: /project_with_externals
@@ -7,55 +7,55 @@ copyroot: 0 /
 PLAIN
 K 15
 failing_project
-V 14
-dir 1.1.r7/379
+V 18
+dir 0-1.0-5.r7/450
 K 3
 foo
-V 18
-dir 9.0.r11/104870
+V 20
+dir 0-11.0.r11/83406
 K 15
 passing_project
-V 14
-dir 1.0.r7/832
+V 16
+dir 0-1.0.r7/970
 K 27
 project_with_central_config
-V 16
-dir 3d.0.r20/338
+V 18
+dir 0-16.0.r20/394
 K 37
 project_with_cruise_and_default_tasks
-V 15
-dir 7.0.r10/386
+V 18
+dir 0-10.0.r10/568
 K 29
 project_with_custom_rake_task
-V 16
-dir 2t.0.r13/364
+V 18
+dir 0-12.0.r13/421
 K 23
 project_with_db_migrate
-V 15
-dir 5.0.r25/343
+V 17
+dir 0-8.0.r25/404
 K 38
 project_with_db_test_purge_and_migrate
-V 16
-dir 2v.0.r21/597
+V 18
+dir 0-14.0.r21/659
 K 22
 project_with_externals
-V 14
-dir 3f.0.r26/0
+V 16
+dir 0-26.0.r26/0
 K 57
 project_with_no_migration_scripts_but_database_yml_exists
-V 17
-dir 37.0.r15/2601
+V 19
+dir n-15.0.r15/2843
 END
 ENDREP
-id: 0.0.r26/637
+id: 0.0.r26/662
 type: dir
-pred: 0.0.r25/1006
+pred: 0.0.r25/1092
 count: 26
-text: 26 80 544 544 ca94db928c20000c3b40e8477e8dc83d
+text: 26 82 567 567 2ad289417b2e2cbf75cb459128720ed1
 cpath: /
 copyroot: 0 /
 
-_0.0.t25-1 add false false /project_with_externals
+_0.0.t25-p add-dir false false /project_with_externals
 
 
-637 769
+662 794

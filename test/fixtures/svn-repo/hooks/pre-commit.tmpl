@@ -10,6 +10,17 @@
 #   [1] REPOS-PATH   (the path to this repository)
 #   [2] TXN-NAME     (the name of the txn about to be committed)
 #
+#   [STDIN] LOCK-TOKENS ** the lock tokens are passed via STDIN.
+#
+#   If STDIN contains the line "LOCK-TOKENS:\n" (the "\n" denotes a
+#   single newline), the lines following it are the lock tokens for
+#   this commit.  The end of the list is marked by a line containing
+#   only a newline character.
+#
+#   Each lock token line consists of a URI-escaped path, followed
+#   by the separator character '|', followed by the lock token string,
+#   followed by a newline.
+#
 # The default working directory for the invocation is undefined, so
 # the program should set one explicitly if it cares.
 #
@@ -50,8 +61,8 @@
 # Here is an example hook script, for a Unix /bin/sh interpreter.
 # For more examples and pre-written hooks, see those in
 # the Subversion repository at
-# http://svn.collab.net/repos/svn/trunk/tools/hook-scripts/ and
-# http://svn.collab.net/repos/svn/trunk/contrib/hook-scripts/
+# http://svn.apache.org/repos/asf/subversion/trunk/tools/hook-scripts/ and
+# http://svn.apache.org/repos/asf/subversion/trunk/contrib/hook-scripts/
 
 
 REPOS="$1"

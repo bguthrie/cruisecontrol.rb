@@ -40,12 +40,11 @@
 # Here is an example hook script, for a Unix /bin/sh interpreter.
 # For more examples and pre-written hooks, see those in
 # the Subversion repository at
-# http://svn.collab.net/repos/svn/trunk/tools/hook-scripts/ and
-# http://svn.collab.net/repos/svn/trunk/contrib/hook-scripts/
+# http://svn.apache.org/repos/asf/subversion/trunk/tools/hook-scripts/ and
+# http://svn.apache.org/repos/asf/subversion/trunk/contrib/hook-scripts/
 
 
 REPOS="$1"
 REV="$2"
 
-commit-email.pl "$REPOS" "$REV" commit-watchers@example.org
-log-commit.py --repository "$REPOS" --revision "$REV"
+mailer.py commit "$REPOS" "$REV" /path/to/mailer.conf
