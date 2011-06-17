@@ -119,6 +119,8 @@ class BuildsControllerTest < ActionController::TestCase
   context "GET /:builds/:project/:id/artifact/*:path" do
     test "should render the requested file if it exists" do
       with_sandbox_project do |sandbox, project|
+        @controller.stubs(:render)
+        @controller.expects(:send_file).with(includes("index.html"), has_entry(:type => "text/html"))
         create_build 1
         sandbox.new :file => 'build-1/rcov/index.html', :with_contents => 'apple pie'
 
@@ -127,8 +129,6 @@ class BuildsControllerTest < ActionController::TestCase
         get :artifact, :project => project.name, :build => '1', :path => ['rcov', 'index.html']
 
         assert_response :success
-        assert_equal 'apple pie', @response.body
-        assert_equal 'text/html', @response.headers['Content-Type']
       end
     end
   
@@ -146,17 +146,17 @@ class BuildsControllerTest < ActionController::TestCase
     ].each do |file, type|
       test "should render #{file} with a content type of #{type}" do
         with_sandbox_project do |sandbox, project|
+          @controller.stubs(:render)
+          @controller.expects(:send_file).with(includes(file), has_entry(:type => type))
           create_build 1
 
           sandbox.new :file => "build-1/#{file}", :with_content => "lemon.#{file}"
 
-          Project.expects(:find).with(project.name).returns(project)
+          Project.stubs(:find).returns(project)
 
           get :artifact, :project => project.name, :build => '1', :path => file
 
           assert_response :success
-          assert_equal "lemon.#{file}", response.body
-          assert_equal type, response.headers['Content-Type']
         end
       end
     end

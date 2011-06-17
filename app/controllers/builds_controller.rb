@@ -26,22 +26,25 @@ class BuildsController < ApplicationController
 
     @project = Project.find(params[:project])
     render :text => "Project #{params[:project].inspect} not found", :status => 404 and return unless @project
+
     @build = @project.find_build(params[:build])
     render :text => "Build #{params[:build].inspect} not found", :status => 404 and return unless @build
 
-    path = @build.artifact(params[:path])
+    path = Pathname.new(@build.artifact(params[:path]))
 
-    if File.directory? path
-      if File.exists?(File.join(path, 'index.html'))
-        redirect_to request.fullpath + '/index.html'
+    if path.exist?
+      if path.directory?
+        if path.join('index.html').exist?
+          redirect_to request.fullpath + '/index.html'
+        else
+          render :text => "this should be an index of #{params[:path]}"
+        end
       else
-        # TODO: generate an index from directory contents
-        render :text => "this should be an index of #{params[:path]}"
+        
+        send_file(path.to_s, :type => get_mime_type(path), :disposition => 'inline', :stream => false)
       end
-    elsif File.exists? path
-      send_file(path, :type => get_mime_type(path), :disposition => 'inline', :stream => false)
     else
-      render_not_found
+      render :text => "File #{path} does not exist", :status => 404
     end
   end
   
@@ -58,10 +61,11 @@ class BuildsController < ApplicationController
       "zip"  => "application/zip"
     }
 
-    def get_mime_type(name)
-      extension = name.downcase.split(".").last
-      return MIME_TYPES[ extension ]if MIME_TYPES.has_key? extension
-      "text/plain"
+    DEFAULT_MIME_TYPE = "text/plain"
+
+    def get_mime_type(path)
+      extension = path.extname.downcase[1..-1]
+      MIME_TYPES[extension] || DEFAULT_MIME_TYPE
     end
 
     def partitioned_build_lists(project)
