@@ -4,14 +4,14 @@ class CommandLineTest < ActiveSupport::TestCase
   include FileSandbox
 
   def quoted(cmd)
-    Platform.family == "mswin32" ? " \"#{cmd}\"" : cmd
+    Platform.family == "mswin32" ? "\"#{cmd}\"" : cmd
   end
 
   def test_should_write_to_both_files_when_both_files_specified_and_no_block
     in_total_sandbox do
       CommandLine.execute("echo hello", {:dir => @dir, :stdout => @stdout, :stderr => @stderr})
-      assert_equal(@prompt + quoted("echo hello") + "  \nhello \n", File.read(@stdout))
-      assert_match(/.*#{quoted("echo hello")}/n, File.read(@stderr))
+      assert_equal("#{@prompt} #{quoted("echo hello")}\nhello\n", File.read(@stdout))
+      assert_match(/. *#{quoted("echo hello")}/n, File.read(@stderr))
     end
   end
 
@@ -22,7 +22,7 @@ class CommandLineTest < ActiveSupport::TestCase
       end
       assert_equal("hello", File.read(@stdout).strip)
 #      assert_equal("#{@prompt} echo hello\nhello", File.read(@stdout).strip)
-      assert_equal(@prompt + quoted("echo hello"), File.read(@stderr).strip)
+      assert_equal("#{@prompt} #{quoted("echo hello")}", File.read(@stderr).strip)
     end
   end
 
@@ -32,8 +32,8 @@ class CommandLineTest < ActiveSupport::TestCase
         
         assert_equal("hello", io.read.strip)
       end
-      assert_equal(@prompt + quoted("echo hello") + "  \n'[output captured and therefore not logged]'", File.read(@stdout).strip)
-      assert_equal(@prompt + quoted("echo hello"), File.read(@stderr).strip)
+      assert_equal("#{@prompt} #{quoted("echo hello")}\n[output captured and therefore not logged]", File.read(@stdout).strip)
+      assert_equal("#{@prompt} #{quoted("echo hello")}", File.read(@stderr).strip)
     end
   end
 
