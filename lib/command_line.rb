@@ -192,7 +192,7 @@ module CommandLine
     else
       escaped_characters = /"|'|<|>| |&|\||\(|\)|\\|;/
       escape_symbol = '\\'
-      quote_argument_with_spaces = false
+      quote_argument = false
     end
     escaped_value = item.to_s.gsub(escaped_characters) { |match| "#{escape_symbol}#{match}" }
     if quote_argument
